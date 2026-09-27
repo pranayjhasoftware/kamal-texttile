@@ -89,7 +89,7 @@ export default function Hero() {
       </div>
 
       <div className="hero-bottom">
-        <span>BHIVANDI · MAHARASHTRA</span>
+        <span>BHIWANDI · MAHARASHTRA</span>
 
         <span className="scroll-indicator">
           SCROLL
