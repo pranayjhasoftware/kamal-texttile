@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import ResponsiveImage from "@/components/ResponsiveImage";
 
 export default function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -63,7 +64,13 @@ export default function Hero() {
 
   return (
     <section className="hero">
-      <div className="hero-image" />
+      <div className="hero-image">
+        <ResponsiveImage
+          base="/images/hero"
+          sizes="100vw"
+          priority
+        />
+      </div>
 
       <div className="hero-overlay" />
 

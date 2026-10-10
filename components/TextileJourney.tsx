@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import ResponsiveImage from "@/components/ResponsiveImage";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -12,35 +13,35 @@ const stages = [
     title: "YARN",
     description:
       "The foundation of every textile begins with carefully selected yarn.",
-    image: "/images/journey/yarn.jpg",
+    image: "/images/journey/yarn",
   },
   {
     number: "02",
     title: "WEAVING",
     description:
       "Yarn is transformed through precise weaving into structured textile surfaces.",
-    image: "/images/journey/weaving.jpg",
+    image: "/images/journey/weaving",
   },
   {
     number: "03",
     title: "PROCESSING",
     description:
       "Fabric undergoes finishing processes designed to achieve the desired character and performance.",
-    image: "/images/journey/processing.jpg",
+    image: "/images/journey/processing",
   },
   {
     number: "04",
     title: "QUALITY",
     description:
       "Every stage is inspected to maintain consistency across the finished material.",
-    image: "/images/journey/quality.jpg",
+    image: "/images/journey/quality",
   },
   {
     number: "05",
     title: "FABRIC",
     description:
       "The final textile is prepared for customers, manufacturers and the next stage of production.",
-    image: "/images/journey/fabric.jpg",
+    image: "/images/journey/fabric",
   },
 ];
 
@@ -137,12 +138,12 @@ export default function TextileJourney() {
       <div className="journey-panels">
         {stages.map((stage) => (
           <article className="journey-panel" key={stage.number}>
-            <div
-              className="journey-image"
-              style={{
-                backgroundImage: `url(${stage.image})`,
-              }}
-            />
+            <div className="journey-image">
+              <ResponsiveImage
+                base={stage.image}
+                sizes="(max-width: 900px) 100vw, 90vw"
+              />
+            </div>
 
             <div className="journey-overlay" />
 

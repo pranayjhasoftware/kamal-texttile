@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap");
-
 :root {
   --black: #11100e;
   --cream: #eee9df;
@@ -15,12 +13,19 @@
 
 html {
   scroll-behavior: auto;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+img {
+  max-width: 100%;
 }
 
 body {
   background: var(--black);
   color: var(--cream);
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--font-sans), "DM Sans", sans-serif;
+  overflow-x: clip;
 }
 
 a {
@@ -45,6 +50,8 @@ a {
   justify-content: space-between;
 
   z-index: 100;
+
+  mix-blend-mode: difference;
 }
 
 .logo {
@@ -144,7 +151,9 @@ a {
 .mobile-menu-inner {
   height: 100%;
 
-  padding: 140px 8vw;
+  padding: 110px 8vw 40px;
+
+  overflow-y: auto;
 
   display: flex;
   flex-direction: column;
@@ -158,13 +167,13 @@ a {
 
   padding: 15px 0;
 
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-serif), "Instrument Serif", serif;
 
   font-size: clamp(42px, 10vw, 80px);
 }
 
 .mobile-menu a span {
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--font-sans), "DM Sans", sans-serif;
 
   font-size: 10px;
   color: var(--muted);
@@ -176,6 +185,7 @@ a {
   position: relative;
 
   height: 100vh;
+  height: 100svh;
   min-height: 700px;
 
   overflow: hidden;
@@ -188,11 +198,44 @@ a {
   position: absolute;
   inset: 0;
 
-  background-image: url("/images/hero.jpg");
-  background-size: cover;
-  background-position: center;
+  background: #1a1815;
 
   transform-origin: center;
+}
+
+.hero-image img,
+.journey-image img,
+.product-image img,
+.facility-card-image img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.journey-image,
+.product-image,
+.facility-card-image {
+  background-color: #1a1815;
+}
+
+.manufacturing-background img {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0;
+}
+
+.manufacturing-background img.is-active {
+  opacity: 1;
 }
 
 .hero-overlay {
@@ -243,7 +286,7 @@ a {
 }
 
 .hero h1 em {
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-serif), "Instrument Serif", serif;
   font-weight: 400;
 }
 
@@ -348,7 +391,7 @@ a {
 .placeholder-section h2 {
   margin-top: 25px;
 
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-serif), "Instrument Serif", serif;
 
   font-size: clamp(60px, 9vw, 140px);
 
@@ -380,7 +423,12 @@ a {
   }
 
   .hero h1 {
-    font-size: clamp(65px, 18vw, 110px);
+    font-size: clamp(44px, 15vw, 110px);
+    line-height: 0.88;
+  }
+
+  .hero-content {
+    padding-top: 60px;
   }
 
   .hero-description {
@@ -738,7 +786,7 @@ a {
     width: 100%;
     max-width: 100%;
 
-    font-size: clamp(3.3rem, 15vw, 6rem);
+    font-size: clamp(2.6rem, 13.5vw, 6rem);
     line-height: 0.84;
 
     letter-spacing: -0.06em;
@@ -807,10 +855,6 @@ a {
     bottom: 12vh;
   }
 
-  .manufacturing-content h2 {
-    font-size: clamp(3rem, 17vw, 4.8rem);
-  }
-
   .manufacturing-content p {
     font-size: 0.76rem;
     line-height: 1.5;
@@ -876,7 +920,7 @@ a {
 }
 
 .journey-heading em {
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-serif), "Instrument Serif", serif;
   font-weight: 400;
 }
 
@@ -1008,7 +1052,7 @@ a {
 }
 
 .products-heading em {
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-serif), "Instrument Serif", serif;
 }
 
 .products-description {
@@ -1109,7 +1153,7 @@ a {
 .product-info h3 {
   margin-top: 10px;
 
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-serif), "Instrument Serif", serif;
 
   font-size: clamp(45px, 5vw, 80px);
 
@@ -1160,67 +1204,6 @@ a {
 
 
 /* =========================================================
-   MOBILE MANUFACTURING
-========================================================= */
-
-@media (max-width: 800px) {
-  .manufacturing {
-    height: 600vh;
-  }
-
-  .manufacturing-content {
-    left: 7vw;
-    right: 7vw;
-    bottom: 13vh;
-
-    grid-template-columns: 1fr;
-
-    gap: 15px;
-  }
-
-  .manufacturing-number {
-    padding-top: 0;
-  }
-
-  .manufacturing-content h2 {
-    font-size: clamp(75px, 20vw, 130px);
-  }
-
-  .manufacturing-content p {
-    margin-top: 30px;
-
-    font-size: 13px;
-  }
-
-  .manufacturing-progress {
-    right: 7vw;
-
-    top: auto;
-    bottom: 40px;
-
-    transform: none;
-
-    flex-direction: row;
-  }
-
-  .progress-item i {
-    width: 12px;
-  }
-
-  .progress-item.active i {
-    width: 30px;
-  }
-
-  .manufacturing-top {
-    top: 30px;
-
-    left: 7vw;
-    right: 7vw;
-  }
-}
-
-
-/* =========================================================
    FACILITY
 ========================================================= */
 
@@ -1246,7 +1229,7 @@ a {
   top: 100px;
   left: 7vw;
 
-  width: 400px;
+  width: min(400px, 30vw);
 }
 
 .facility-intro > span {
@@ -1270,7 +1253,7 @@ a {
 }
 
 .facility-intro h2 em {
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-serif), "Instrument Serif", serif;
 
   font-weight: 400;
 }
@@ -1369,7 +1352,7 @@ a {
 .facility-card-content h3 {
   margin-top: 10px;
 
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-serif), "Instrument Serif", serif;
 
   font-size: clamp(55px, 6vw, 100px);
 
@@ -1426,7 +1409,7 @@ a {
    MOBILE FACILITY
 ========================================================= */
 
-@media (max-width: 800px) {
+@media (max-width: 1024px) {
   .facility {
     height: auto;
 
@@ -1449,7 +1432,11 @@ a {
   }
 
   .facility-intro h2 {
-    font-size: 80px;
+    font-size: clamp(56px, 16vw, 110px);
+  }
+
+  .facility-intro p {
+    max-width: 440px;
   }
 
   .facility-track {
@@ -1469,6 +1456,9 @@ a {
     gap: 15px;
 
     scrollbar-width: none;
+
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
   }
 
   .facility-track::-webkit-scrollbar {
@@ -1476,13 +1466,26 @@ a {
   }
 
   .facility-card {
-    flex: 0 0 82vw;
+    flex: 0 0 min(82vw, 520px);
 
-    width: 82vw;
+    width: min(82vw, 520px);
 
     height: 65vh;
+    height: min(65svh, 640px);
 
-    min-height: 450px;
+    min-height: 420px;
+
+    scroll-snap-align: start;
+  }
+
+  .facility-card-content {
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+  }
+
+  .facility-card-content h3 {
+    font-size: clamp(44px, 12vw, 80px);
   }
 
   .facility-location {
@@ -1552,7 +1555,7 @@ a {
 }
 
 .about-main h2 em {
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-serif), "Instrument Serif", serif;
 
   font-weight: 400;
 }
@@ -1590,7 +1593,7 @@ a {
 }
 
 .about-bottom strong {
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-serif), "Instrument Serif", serif;
 
   font-size: 35px;
 
@@ -1612,7 +1615,7 @@ a {
 
 /* ================= MOBILE ================= */
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .about {
     min-height: auto;
 
@@ -1621,6 +1624,8 @@ a {
 
   .about-top {
     font-size: 8px;
+
+    gap: 1rem;
   }
 
   .about-main {
@@ -1630,9 +1635,9 @@ a {
   }
 
   .about-main h2 {
-    font-size: 85px;
+    font-size: clamp(56px, 19vw, 120px);
 
-    margin-bottom: 70px;
+    margin-bottom: 50px;
   }
 
   .about-copy p {
@@ -1685,7 +1690,7 @@ a {
 }
 
 .contact-heading em {
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-serif), "Instrument Serif", serif;
   font-weight: 400;
 }
 
@@ -1866,7 +1871,7 @@ a {
 }
 
 .contact-title-serif {
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-serif), "Instrument Serif", serif;
   font-weight: 400;
   margin-left: 13vw;
 }
@@ -2141,7 +2146,7 @@ a {
 }
 
 .footer-brand em {
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-serif), "Instrument Serif", serif;
   font-size: 1.6rem;
   font-weight: 400;
 }
@@ -2257,5 +2262,171 @@ a {
 
   .footer-copy {
     justify-self: start;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE: JOURNEY + PRODUCTS + SMALL SCREENS
+========================================================= */
+
+@media (max-width: 900px) {
+  /* JOURNEY */
+
+  .journey-intro {
+    display: block;
+
+    min-height: auto;
+
+    padding: 120px 6vw 70px;
+  }
+
+  .section-number {
+    margin-bottom: 30px;
+  }
+
+  .journey-heading {
+    font-size: clamp(38px, 11.5vw, 100px);
+  }
+
+  .journey-intro > p {
+    margin-top: 35px;
+
+    font-size: 14px;
+  }
+
+  .journey-panels {
+    padding: 0 4vw 90px;
+  }
+
+  .journey-panel {
+    height: 70vh;
+    height: 70svh;
+
+    min-height: 460px;
+
+    margin-bottom: 5vw;
+  }
+
+  .journey-content {
+    left: 6%;
+    right: 6%;
+    bottom: 8%;
+  }
+
+  .journey-content h3 {
+    font-size: clamp(40px, 14vw, 110px);
+
+    overflow-wrap: anywhere;
+  }
+
+  .journey-content p {
+    margin-top: 20px;
+
+    font-size: 13px;
+  }
+
+  /* PRODUCTS */
+
+  .products {
+    padding: 90px 6vw;
+  }
+
+  .products-header {
+    display: block;
+
+    margin-bottom: 60px;
+  }
+
+  .products-heading {
+    font-size: clamp(46px, 14vw, 110px);
+  }
+
+  .products-description {
+    margin-top: 30px;
+
+    font-size: 14px;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+  }
+
+  .product-card:nth-child(n) {
+    grid-column: auto;
+
+    margin-top: 0;
+
+    height: clamp(380px, 100vw, 560px);
+  }
+
+  .product-info {
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+  }
+
+  .product-info h3 {
+    font-size: clamp(40px, 11vw, 64px);
+  }
+
+  .product-arrow {
+    top: 18px;
+    right: 18px;
+
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-action {
+    grid-template-columns: 72px 1fr 20px;
+
+    gap: 0.6rem;
+  }
+
+  .contact-primary h3 {
+    font-size: 2.3rem;
+  }
+
+  .location-content h3 {
+    font-size: clamp(2.8rem, 16vw, 4rem);
+  }
+
+  .footer-links {
+    gap: 1.2rem;
+  }
+
+  .hero-button {
+    gap: 20px;
+  }
+}
+
+/* Short landscape screens (phones turned sideways) */
+@media (max-height: 520px) and (orientation: landscape) {
+  .mobile-menu a {
+    padding: 6px 0;
+
+    font-size: 34px;
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 12vh, 80px);
+  }
+
+  .manufacturing-content {
+    bottom: 16vh;
+  }
+
+  .manufacturing-content h2 {
+    font-size: clamp(2rem, 9vh, 3rem);
+  }
+
+  .manufacturing-content p {
+    margin-top: 0.7rem;
+
+    font-size: 0.72rem;
   }
 }

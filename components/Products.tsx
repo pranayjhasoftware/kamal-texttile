@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import ResponsiveImage from "@/components/ResponsiveImage";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -12,28 +13,28 @@ const products = [
     title: "Yarn",
     description:
       "Textile yarn solutions selected for consistency and downstream performance.",
-    image: "/images/products/yarn.jpg",
+    image: "/images/products/yarn",
   },
   {
     number: "02",
     title: "Gola",
     description:
       "Yarn formats and textile materials prepared for manufacturing requirements.",
-    image: "/images/products/gola.jpg",
+    image: "/images/products/gola",
   },
   {
     number: "03",
     title: "Fabric",
     description:
       "Fabric produced for a range of textile and garment applications.",
-    image: "/images/products/fabric.jpg",
+    image: "/images/products/fabric",
   },
   {
     number: "04",
     title: "Custom",
     description:
       "Talk to our team about specific fabric, yarn or manufacturing requirements.",
-    image: "/images/products/custom.jpg",
+    image: "/images/products/custom",
   },
 ];
 
@@ -87,12 +88,13 @@ export default function Products() {
       <div className="products-grid">
         {products.map((product) => (
           <article className="product-card" key={product.number}>
-            <div
-              className="product-image"
-              style={{
-                backgroundImage: `url(${product.image})`,
-              }}
-            />
+            <div className="product-image">
+              <ResponsiveImage
+                base={product.image}
+                widths={[640, 1280]}
+                sizes="(max-width: 900px) 100vw, 60vw"
+              />
+            </div>
 
             <div className="product-card-overlay" />
 

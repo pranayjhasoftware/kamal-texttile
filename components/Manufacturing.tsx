@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import ResponsiveImage from "@/components/ResponsiveImage";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -13,7 +14,7 @@ const processes = [
     subtitle: "The beginning",
     description:
       "Quality textile production begins with the right yarn. Kamal Textile works with yarn manufacturing and supply to establish a reliable foundation for fabric production.",
-    image: "/images/manufacturing/yarn.jpg",
+    image: "/images/journey/yarn",
   },
   {
     number: "02",
@@ -21,7 +22,7 @@ const processes = [
     subtitle: "Creating structure",
     description:
       "Through controlled weaving processes, yarn is transformed into fabric with the structure, texture and characteristics required for different applications.",
-    image: "/images/manufacturing/weaving.jpg",
+    image: "/images/journey/weaving",
   },
   {
     number: "03",
@@ -29,7 +30,7 @@ const processes = [
     subtitle: "Our core",
     description:
       "Fabric manufacturing and supply form the core of Kamal Textile's business, serving customers looking for consistent textile materials and reliable supply.",
-    image: "/images/manufacturing/fabric.jpg",
+    image: "/images/journey/fabric",
   },
   {
     number: "04",
@@ -37,7 +38,7 @@ const processes = [
     subtitle: "Refining the fabric",
     description:
       "Fabric finishing and processing bring the material closer to its intended appearance, feel and application.",
-    image: "/images/manufacturing/finishing.jpg",
+    image: "/images/facility/finishing",
   },
   {
   number: "05",
@@ -45,7 +46,7 @@ const processes = [
   subtitle: "Adding character",
   description:
     "Embroidery adds detail and character to textile materials, creating distinctive finished applications.",
-  image: "/images/manufacturing/embroidery.jpg",
+  image: "/images/manufacturing/embroidery",
 },
 {
   number: "06",
@@ -53,7 +54,7 @@ const processes = [
   subtitle: "Beyond borders",
   description:
     "Kamal Textile supports textile exports, connecting its products with customers beyond the domestic market.",
-  image: "/images/manufacturing/export.jpg",
+  image: "/images/manufacturing/export",
 },
 ];
 
@@ -63,6 +64,8 @@ export default function Manufacturing() {
   const contentRef = useRef<HTMLDivElement>(null);
 
   const [active, setActive] = useState(0);
+  // Image shown in the background; lags `active` so it swaps mid-fade.
+  const [shown, setShown] = useState(0);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -99,9 +102,7 @@ export default function Manufacturing() {
         duration: 0.25,
         ease: "power2.in",
       })
-      .set(image, {
-        backgroundImage: `url(${processes[active].image})`,
-      })
+      .call(() => setShown(active))
       .set(content, {
         y: 30,
       })
@@ -133,13 +134,16 @@ export default function Manufacturing() {
       className="manufacturing"
     >
       <div className="manufacturing-sticky">
-        <div
-          ref={imageRef}
-          className="manufacturing-background"
-          style={{
-            backgroundImage: `url(${processes[0].image})`,
-          }}
-        />
+        <div ref={imageRef} className="manufacturing-background">
+          {processes.map((process, index) => (
+            <ResponsiveImage
+              key={process.number}
+              base={process.image}
+              sizes="100vw"
+              className={shown === index ? "is-active" : undefined}
+            />
+          ))}
+        </div>
 
         <div className="manufacturing-overlay" />
 
